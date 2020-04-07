@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>220</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>User
+--
+nom
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>200</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Abonnement
+--
+prixMois
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>190</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Video
+--
+nom
+description
+duree</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>220</y>
+      <w>180</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>m1=0..1
+m2=0..*
+donne acces</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>280</y>
+      <w>160</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>m1=0..1
+m2=0..*
+a</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>330</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Souscription
+--
+numReference
+dateDebut
+dateFin
+dateSouscription</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>230</y>
+      <w>210</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>m2=0..1
+m1=0..*
+correspond</panel_attributes>
+    <additional_attributes>10.0;160.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>550</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Membre
+--
+nom
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>360</y>
+      <w>70</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>m1=0..1
+m2=0..*
+est lie</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+</diagram>
