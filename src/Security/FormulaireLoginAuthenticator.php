@@ -24,6 +24,7 @@ class FormulaireLoginAuthenticator extends AbstractFormLoginAuthenticator implem
 {
     use TargetPathTrait;
 
+    //public const LOGIN_ROUTE = 'nouvelle_action_submit_login';
     public const LOGIN_ROUTE = 'app_login';
 
     private $entityManager;
@@ -92,13 +93,26 @@ class FormulaireLoginAuthenticator extends AbstractFormLoginAuthenticator implem
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($targetPath);
-        }
-
+        // if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        //     return new RedirectResponse($targetPath);
+        // }
+        // redirigez vers login: là on fera reponse JSON qui nous convient.
+        // Contrairement à certaines docs, on ne peut pas renvoyer null ni éliminer la méthode
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        
+        
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
+
+// added
+    // public function onAuthenticationFailure(\Symfony\Component\HttpFoundation\Request $request,
+    //                                     \Symfony\Component\Security\Core\Exception\AuthenticationException $exception) 
+    // {
+        // on ne lance pas l'exception
+        // throw new \Exception("error dans le login, c'est onAuthenticationFailure dans FormulaireLoginAuthenticator qui s'en occupe"); // rediriger, exception etc...
+    // }
+
 
     protected function getLoginUrl()
     {

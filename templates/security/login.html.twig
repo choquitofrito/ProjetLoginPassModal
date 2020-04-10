@@ -1,42 +1,55 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
+<!-- rajouter id pour form et bouton  -->
+<form id="formLogin">    
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+    <input type="email" value="" name="email" id="inputEmail" class="form-control" required
+        autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-lg btn-primary" type="submit" id="btnLogin">
         Sign in
     </button>
 </form>
+
+<!-- pour afficher l'erreur -->
+<div id="divMessageErreur">
+<!-- vide par défaut -->
+</div>
+
+{% block customjs %}
+<!-- ce bloc est imbriqué dans le bloc qui a l'include -->
+<!-- // pas besoin de parent car ce code est inclut dans le base.html.twig avec include  -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    document.getElementById("btnLogin").addEventListener("click", function (event) {
+        event.preventDefault();
+        axios({
+            url: '{{ path ("app_login") }}',
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            data: new FormData(document.getElementById("formLogin"))
+        })
+        .then(function (response) {
+                // response.data est un objet qui correspond à l'array associatif envoyé dans le controller
+                // JsonResponse a transformé l'array en JSON. Axios transforme le JSON en objet JS
+                
+                // si erreur
+                if (response.data.error != undefined) {
+                    divMessageErreur.innerHTML = response.data.error;
+                }
+                // si pas d'erreur
+                else {
+                    console.log ('connexion ok login');
+                    window.location.href = "{{ path ('accueil') }}";
+                }
+                
+        })
+        .catch(function (error) {
+                console.log(error);
+        });
+    });    
+</script>
 {% endblock %}
