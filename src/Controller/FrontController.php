@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class FrontController extends AbstractController
 {
@@ -12,8 +13,16 @@ class FrontController extends AbstractController
      */
     public function index()
     {
-        return $this->render('base.html.twig', [
+        return $this->render('front/index.html.twig', [
             'controller_name' => 'FrontController',
         ]);
+    }
+
+    /**
+     * @Route("/accueil/abonnement", name="abonnement")
+     */
+    public function abonnement()
+    {
+        return $this->render('abonnement.html.twig');
     }
 }
