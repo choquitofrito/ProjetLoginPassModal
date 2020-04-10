@@ -80,9 +80,9 @@
 			</div>
 			<div class="modal-body">
 
-				<!-- include la vue du login  -->
+				<!-- include de la vue du login  -->
 				{% include "security/login.html.twig" %}
-
+				
 				<!-- <form>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Votre Email</label>
@@ -99,7 +99,17 @@
 			</div>
 			<div class="modal-footer">
 			<p>Pas encore de Compte ? Inscrivez-vous !</p>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">S'inscrire</button>
+
+			<!-- include de l'action register (seulement pour test) 
+			qui affiche et traite le form d'inscription 
+			Attention car pour gérer les erreurs d'inscription il faudra faire pas mal de changements! -->
+	
+			{{ render (controller (
+				'App\\Controller\\RegistrationController::register' 
+				))
+			}}  
+		    
+			<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">S'inscrire</button> -->
 			</div>
 		</div>
 	</div>

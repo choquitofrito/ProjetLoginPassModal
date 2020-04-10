@@ -32,10 +32,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setNom ("test");
-            $user->setPrenom ("test");
-            
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -49,7 +45,7 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
         }
-
+        // si le formulaire n'est pas valide...
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

@@ -1,9 +1,10 @@
     <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
+    {# on a du rajouter l'action!  #}
+    {{ form_start(registrationForm,{'action': path('app_register'), 'method': 'POST'}) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button class="btn">Register</button>
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.nom) }}
+        <button class="btn btn-secondary">Register</button> 
     {{ form_end(registrationForm) }}
